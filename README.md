@@ -8,21 +8,21 @@ When a user adds a word, the application automatically fetches its definition an
 
 ### Frontend
 
-* React.js (Vite)
-* CSS
+- React.js (Vite)
+- CSS
 
 ### Backend
 
-* Node.js
-* Express.js
+- Node.js
+- Express.js
 
 ### Database
 
-* MongoDB with Mongoose
+- MongoDB with Mongoose
 
 ### External API
 
-* Dictionary API (dictionaryapi.dev)
+- Dictionary API (dictionaryapi.dev)
 
 ---
 
@@ -48,6 +48,17 @@ MONGO_URI=mongodb://localhost:27017/vocab-builder
 ```bash
 cd Frontend
 npm install
+```
+
+Create a `.env` file in the `Frontend` folder and configure the API base URL:
+
+```env
+VITE_API_BASE_URL=http://localhost:5001/api/words
+```
+
+Then start the frontend:
+
+```bash
 npm run dev
 ```
 
@@ -57,11 +68,7 @@ The frontend dev server runs on:
 http://localhost:5173
 ```
 
-The frontend is configured to proxy API requests from `/api/*` to the backend at:
-
-```text
-http://localhost:5001
-```
+The frontend uses the configured `VITE_API_BASE_URL` for all API requests.
 
 ---
 
@@ -71,10 +78,10 @@ http://localhost:5001
 
 Users can enter a vocabulary word and the system will:
 
-* Fetch its definition
-* Fetch an example sentence (if available)
-* Save the word in MongoDB
-* Make it immediately available for review
+- Fetch its definition
+- Fetch an example sentence (if available)
+- Save the word in MongoDB
+- Make it immediately available for review
 
 ### Review Mode
 
@@ -85,9 +92,9 @@ Workflow:
 1. Show the word
 2. Reveal the definition
 3. User selects:
+   - Got It Right
+   - Needs Work
 
-   * Got It Right
-   * Needs Work
 4. Next review date is automatically calculated
 
 ### Spaced Repetition Logic
@@ -120,9 +127,9 @@ Handles communication with the external Dictionary API.
 
 Responsibilities:
 
-* Fetch definitions
-* Extract example sentences
-* Handle API errors
+- Fetch definitions
+- Extract example sentences
+- Handle API errors
 
 ### srsService.js
 
@@ -130,12 +137,12 @@ Contains the spaced repetition scheduling logic.
 
 Given:
 
-* Review result
-* Dev mode status
+- Review result
+- Dev mode status
 
 It returns:
 
-* The next review date
+- The next review date
 
 Keeping this logic separate makes it easier to test and maintain.
 
@@ -143,11 +150,11 @@ Keeping this logic separate makes it easier to test and maintain.
 
 Stores:
 
-* Word
-* Definition
-* Example
-* Review history
-* Next review date
+- Word
+- Definition
+- Example
+- Review history
+- Next review date
 
 An index is added to the review date field because review queries are performed frequently.
 
@@ -155,9 +162,9 @@ An index is added to the review date field because review queries are performed 
 
 The route layer remains lightweight and focuses only on:
 
-* Request validation
-* Calling services
-* Returning responses
+- Request validation
+- Calling services
+- Returning responses
 
 ---
 
@@ -167,9 +174,9 @@ The application is small, so I avoided adding Redux or other state-management li
 
 Instead:
 
-* App component manages global UI state
-* Review and Library pages manage their own data
-* Components update their local state after API calls to keep the interface responsive
+- App component manages global UI state
+- Review and Library pages manage their own data
+- Components update their local state after API calls to keep the interface responsive
 
 This approach keeps the codebase simple while still being easy to understand.
 
@@ -179,12 +186,12 @@ This approach keeps the codebase simple while still being easy to understand.
 
 A few UI decisions were made to improve the experience:
 
-* Flashcard-style review interface
-* Definition hidden until revealed
-* Clear success and error messages
-* Responsive layout for mobile and desktop
-* Empty states when no words are available
-* Loading indicators during API requests
+- Flashcard-style review interface
+- Definition hidden until revealed
+- Clear success and error messages
+- Responsive layout for mobile and desktop
+- Empty states when no words are available
+- Loading indicators during API requests
 
 ---
 
