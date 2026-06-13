@@ -1,0 +1,48 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer base {
+  :root {
+    --primary: #4F46E5;
+    --primary-foreground: #ffffff;
+    --accent: #22C55E;
+    --accent-foreground: #ffffff;
+    --background: #F8FAFC;
+    --foreground: #1e293b;
+    --muted: #64748B;
+    --muted-foreground: #475569;
+    --destructive: #EF4444;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rounding" 1;
+  }
+
+  * {
+    @apply border-border;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground px-4 py-2 rounded font-semibold hover:opacity-90 transition-opacity;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-100 text-foreground px-4 py-2 rounded font-semibold hover:bg-gray-200 transition-colors;
+  }
+
+  .badge-accent {
+    @apply bg-accent text-accent-foreground text-xs font-bold px-2 py-1 rounded;
+  }
+
+  .badge-secondary {
+    @apply bg-gray-200 text-foreground text-xs font-bold px-2 py-1 rounded;
+  }
+}
